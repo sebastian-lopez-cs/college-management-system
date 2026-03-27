@@ -1,0 +1,314 @@
+html {
+    font-size: 14px;
+    position: relative;
+    min-height: 100%;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+body {
+    margin: 0;
+    margin-bottom: 70px;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.eco-body {
+    background: linear-gradient(180deg, #0b1f12 0%, #102b18 35%, #173622 100%);
+    color: #eaf7ea;
+}
+
+/* NAVBAR */
+.eco-navbar {
+    background: linear-gradient(90deg, #08170d 0%, #0f2c18 55%, #1e5a33 100%);
+    border-bottom: 2px solid #5ca36b;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+}
+
+.eco-brand {
+    color: #c8ffb8 !important;
+    font-weight: 800;
+    font-size: 1.4rem;
+    letter-spacing: 0.5px;
+}
+
+.eco-link {
+    color: #f2fff0 !important;
+    font-weight: 600;
+    margin-right: 0.35rem;
+    padding: 0.55rem 0.9rem !important;
+    border-radius: 8px;
+    transition: all 0.2s ease-in-out;
+}
+
+    .eco-link:hover,
+    .eco-link:focus {
+        background-color: rgba(124, 201, 111, 0.18);
+        color: #b8ff8a !important;
+    }
+
+.eco-toggler {
+    border-color: rgba(255, 255, 255, 0.25);
+}
+
+    .eco-toggler .navbar-toggler-icon {
+        filter: brightness(0) invert(1);
+    }
+
+.eco-login-links,
+.eco-login-links a,
+.eco-login-links .nav-link,
+.eco-login-links .navbar-text {
+    color: #ffffff !important;
+}
+
+/* PAGE WRAPPER */
+.eco-page-wrap {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.eco-main-content {
+    background: linear-gradient(180deg, #163320 0%, #1d4028 100%);
+    border: 1px solid #355f42;
+    border-radius: 18px;
+    padding: 2rem;
+    min-height: 75vh;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.28);
+}
+
+/* HEADINGS */
+h1, h2, h3, h4 {
+    color: #b8ff8a;
+    font-weight: 800;
+}
+
+p, label, dt, dd, li, span, div {
+    color: #eaf7ea;
+}
+
+/* BUTTONS */
+.btn-primary {
+    background: linear-gradient(90deg, #2d7a39 0%, #4fae53 100%);
+    border: none;
+    font-weight: 700;
+    border-radius: 10px;
+}
+
+    .btn-primary:hover {
+        background: linear-gradient(90deg, #256430 0%, #439247 100%);
+    }
+
+.btn-secondary {
+    border-radius: 10px;
+    font-weight: 600;
+    background-color: #5c6b61;
+    border: none;
+}
+
+    .btn-secondary:hover {
+        background-color: #4a5750;
+    }
+
+.btn-danger {
+    border-radius: 10px;
+    font-weight: 700;
+}
+
+.btn-success {
+    border-radius: 10px;
+    font-weight: 700;
+}
+
+/* FORMS */
+.form-control,
+.form-select {
+    background-color: #f4fbf3;
+    border: 1px solid #93b29a;
+    border-radius: 10px;
+    color: #14251a;
+}
+
+    .form-control:focus,
+    .form-select:focus {
+        border-color: #6fd16f;
+        box-shadow: 0 0 0 0.2rem rgba(111, 209, 111, 0.2);
+    }
+
+/* TABLES */
+.table {
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: #f8fff7;
+    color: #132117;
+}
+
+    .table thead {
+        background: linear-gradient(90deg, #0f2d18 0%, #245330 100%);
+        color: #ffffff;
+    }
+
+    .table th {
+        color: #ffffff;
+        border-color: #365744;
+    }
+
+    .table td {
+        color: #132117;
+        border-color: #cfe2d1;
+    }
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #eef8ed;
+}
+
+.table a {
+    color: #1d6d33;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+    .table a:hover {
+        color: #0d4f22;
+        text-decoration: underline;
+    }
+
+/* CARDS */
+.card {
+    border: 1px solid #355f42;
+    border-radius: 16px;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.22);
+}
+
+    .card.text-bg-primary {
+        background: linear-gradient(135deg, #1d5a2c, #3f9b4f) !important;
+    }
+
+    .card.text-bg-danger {
+        background: linear-gradient(135deg, #7a1f1f, #cc3d3d) !important;
+    }
+
+    .card.text-bg-warning {
+        background: linear-gradient(135deg, #9a7a17, #f1c232) !important;
+        color: #1b1b1b !important;
+    }
+
+/* LINKS */
+a {
+    color: #b8ff8a;
+}
+
+    a:hover {
+        color: #d6ffc1;
+    }
+
+/* VALIDATION */
+.text-danger {
+    color: #ffb3b3 !important;
+}
+
+/* FOOTER */
+.eco-footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    line-height: 60px;
+    background: linear-gradient(90deg, #08170d 0%, #10311b 100%);
+    color: #d8f1d6;
+    border-top: 1px solid #355f42;
+}
+
+/* DASHBOARD */
+.dashboard-header {
+    margin-bottom: 1.5rem;
+}
+
+.dashboard-title {
+    font-size: 2.4rem;
+    font-weight: 900;
+    color: #b8ff8a;
+    margin-bottom: 0.35rem;
+}
+
+.dashboard-subtitle {
+    color: #d6ead9;
+    font-size: 1rem;
+    margin-bottom: 0;
+}
+
+.dashboard-filter-box {
+    background: linear-gradient(180deg, #173622 0%, #21462d 100%);
+    border: 1px solid #3b6748;
+    border-radius: 16px;
+    padding: 1.25rem;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.22);
+}
+
+.dashboard-stat-card {
+    border-radius: 18px;
+    padding: 1.4rem 1.5rem;
+    min-height: 145px;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.stat-green {
+    background: linear-gradient(135deg, #174a24 0%, #2f8a43 100%);
+    border: 1px solid #4dad66;
+}
+
+.stat-red {
+    background: linear-gradient(135deg, #5f1818 0%, #b22d2d 100%);
+    border: 1px solid #d85d5d;
+}
+
+.stat-yellow {
+    background: linear-gradient(135deg, #7a6212 0%, #d1a61d 100%);
+    border: 1px solid #f0cb59;
+}
+
+.stat-label {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #f4fff0;
+    margin-bottom: 0.75rem;
+}
+
+.stat-yellow .stat-label {
+    color: #1d1d1d;
+}
+
+.stat-value {
+    font-size: 2.4rem;
+    font-weight: 900;
+    line-height: 1;
+    color: #ffffff;
+}
+
+.stat-yellow .stat-value {
+    color: #1d1d1d;
+}
+
+.dashboard-table-box {
+    background: linear-gradient(180deg, #173622 0%, #21462d 100%);
+    border: 1px solid #3b6748;
+    border-radius: 16px;
+    padding: 1.25rem;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.22);
+}
+
+.dashboard-chip {
+    display: inline-block;
+    background: rgba(184, 255, 138, 0.14);
+    color: #cfffab;
+    border: 1px solid rgba(184, 255, 138, 0.28);
+    border-radius: 999px;
+    padding: 0.35rem 0.75rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+}

@@ -1,0 +1,98 @@
+﻿@model FoodSafety.MVC.Models.DashboardViewModel
+
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="dashboard-header mb-4">
+    <h1 class="dashboard-title">Food Safety Dashboard</h1>
+    <p class="dashboard-subtitle">
+        Monitor inspections, failures, and overdue follow-up actions across all premises.
+    </p>
+</div>
+
+<div class="dashboard-filter-box mb-4">
+    <form asp-action="Index" method="get" class="row g-3 align-items-end">
+        <div class="col-md-4">
+            <label class="form-label">Town</label>
+            <select name="town" class="form-select" asp-items="ViewBag.Towns">
+                <option value="">All Towns</option>
+            </select>
+        </div>
+
+        <div class="col-md-4">
+            <label class="form-label">Risk Rating</label>
+            <select name="riskRating" class="form-select" asp-items="Html.GetEnumSelectList<FoodSafety.Domain.Enums.RiskRating>()">
+                <option value="">All Risk Ratings</option>
+            </select>
+        </div>
+
+        <div class="col-md-4 d-flex gap-2">
+            <button type="submit" class="btn btn-primary">Apply Filters</button>
+            <a asp-action="Index" class="btn btn-secondary">Clear</a>
+        </div>
+    </form>
+</div>
+
+<div class="row g-4 mb-4">
+    <div class="col-md-4">
+        <div class="dashboard-stat-card stat-green">
+            <div class="stat-label">Inspections This Month</div>
+            <div class="stat-value">@Model.InspectionsThisMonth</div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="dashboard-stat-card stat-red">
+            <div class="stat-label">Failed Inspections This Month</div>
+            <div class="stat-value">@Model.FailedInspectionsThisMonth</div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="dashboard-stat-card stat-yellow">
+            <div class="stat-label">Overdue Open Follow-Ups</div>
+            <div class="stat-value">@Model.OverdueOpenFollowUps</div>
+        </div>
+    </div>
+</div>
+
+<div class="dashboard-table-box">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h3 class="mb-0">Recent Inspections</h3>
+        <span class="dashboard-chip">Latest 10 Records</span>
+    </div>
+
+    <table class="table table-bordered table-striped mb-0">
+        <thead>
+            <tr>
+                <th>Premises</th>
+                <th>Date</th>
+                <th>Inspector</th>
+                <th>Score</th>
+                <th>Outcome</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.RecentInspections != null && Model.RecentInspections.Any())
+            {
+                @foreach (var item in Model.RecentInspections)
+                {
+                    <tr>
+                        <td>@item.Premises?.Name</td>
+                        <td>@item.InspectionDate.ToShortDateString()</td>
+                        <td>@item.InspectorName</td>
+                        <td>@item.HygieneScore</td>
+                        <td>@item.Outcome</td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="5" class="text-center">No inspection data available.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
