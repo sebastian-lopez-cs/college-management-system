@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Food Safety Tracker</title>
+    <title>@ViewData["Title"] - VGC College System</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/FoodSafety.MVC.styles.css" asp-append-version="true" />
@@ -13,7 +13,7 @@
         <nav class="navbar navbar-expand-lg eco-navbar">
             <div class="container">
                 <a class="navbar-brand eco-brand" asp-area="" asp-controller="Home" asp-action="Index">
-                    Food Safety Tracker
+                    VGC College System
                 </a>
 
                 <button class="navbar-toggler eco-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
@@ -23,21 +23,87 @@
 
                 <div class="collapse navbar-collapse" id="mainNav">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link eco-link" asp-controller="Dashboard" asp-action="Index">Dashboard</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link eco-link" asp-controller="Premises" asp-action="Index">Premises</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link eco-link" asp-controller="Inspections" asp-action="Index">Inspections</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link eco-link" asp-controller="FollowUps" asp-action="Index">Follow Ups</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link eco-link" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
+                        @if (User.Identity != null && User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link eco-link" asp-controller="Dashboard" asp-action="Index">Dashboard</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link eco-link" asp-controller="Branches" asp-action="Index">Branches</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link eco-link" asp-controller="Courses" asp-action="Index">Courses</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link eco-link" asp-controller="StudentProfiles" asp-action="Index">Students</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link eco-link" asp-controller="FacultyProfiles" asp-action="Index">Faculty</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link eco-link" asp-controller="CourseEnrolments" asp-action="Index">Enrolments</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link eco-link" asp-controller="AttendanceRecords" asp-action="Index">Attendance</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link eco-link" asp-controller="Assignments" asp-action="Index">Assignments</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link eco-link" asp-controller="AssignmentResults" asp-action="Index">Assignment Results</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link eco-link" asp-controller="Exams" asp-action="Index">Exams</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link eco-link" asp-controller="ExamResults" asp-action="Index">Exam Results</a>
+                            </li>
+                        }
+
+                        @if (User.Identity != null && User.Identity.IsAuthenticated && User.IsInRole("Faculty"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link eco-link" asp-controller="FacultyPortal" asp-action="MyCourses">My Courses</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link eco-link" asp-controller="FacultyPortal" asp-action="MyStudents">My Students</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link eco-link" asp-controller="Assignments" asp-action="Index">Assignments</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link eco-link" asp-controller="AssignmentResults" asp-action="Index">Assignment Results</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link eco-link" asp-controller="Exams" asp-action="Index">Exams</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link eco-link" asp-controller="ExamResults" asp-action="Index">Exam Results</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link eco-link" asp-controller="AttendanceRecords" asp-action="Index">Attendance</a>
+                            </li>
+                        }
+
+                        @if (User.Identity != null && User.Identity.IsAuthenticated && User.IsInRole("Student"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link eco-link" asp-controller="StudentPortal" asp-action="MyProfile">My Profile</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link eco-link" asp-controller="StudentPortal" asp-action="MyEnrolments">My Enrolments</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link eco-link" asp-controller="StudentPortal" asp-action="MyExams">My Exams</a>
+                            </li>
+                        }
+
+                        @if (User.Identity == null || !User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link eco-link" asp-controller="Home" asp-action="Index">Home</a>
+                            </li>
+                        }
                     </ul>
 
                     <div class="eco-login-links">
@@ -58,7 +124,7 @@
 
     <footer class="eco-footer">
         <div class="container">
-            &copy; 2026 - Food Safety Tracker
+            &copy; 2026 - VGC College System
         </div>
     </footer>
 

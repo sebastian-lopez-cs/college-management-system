@@ -1,83 +1,48 @@
 using FoodSafety.MVC.Data;
 using FoodSafety.MVC.Seed;
+using FoodSafety.MVC.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Serilog;
 
-Log.Logger = new LoggerConfiguration()
-    .WriteTo.Console()
-    .WriteTo.File("logs/foodsafety-.txt", rollingInterval: RollingInterval.Day)
-    .CreateLogger();
+var builder = WebApplication.CreateBuilder(args);
 
-try
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddDefaultIdentity<IdentityUser>(options =>
 {
-    Log.Information("Starting FoodSafety application");
+    options.SignIn.RequireConfirmedAccount = false;
+})
+.AddRoles<IdentityRole>()
+.AddEntityFrameworkStores<ApplicationDbContext>();
 
-    var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddScoped<EnrolmentService>();
+builder.Services.AddScoped<ResultVisibilityService>();
+builder.Services.AddScoped<FacultyAccessService>();
 
-    builder.Host.UseSerilog();
+builder.Services.AddControllersWithViews();
+builder.Services.AddRazorPages();
 
-    // Add services to the container.
-    var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
-        ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+var app = builder.Build();
 
-    builder.Services.AddDbContext<ApplicationDbContext>(options =>
-        options.UseSqlServer(connectionString));
+await AppDbSeeder.SeedAsync(app.Services);
 
-    builder.Services.AddDatabaseDeveloperPageExceptionFilter();
-
-    builder.Services.AddDefaultIdentity<IdentityUser>(options =>
-    {
-        options.SignIn.RequireConfirmedAccount = false;
-    })
-    .AddRoles<IdentityRole>()
-    .AddEntityFrameworkStores<ApplicationDbContext>();
-
-    builder.Services.AddControllersWithViews();
-
-    var app = builder.Build();
-
-    // Configure the HTTP request pipeline.
-    if (app.Environment.IsDevelopment())
-    {
-        app.UseMigrationsEndPoint();
-    }
-    else
-    {
-        app.UseExceptionHandler("/Home/Error");
-        app.UseHsts();
-    }
-
-    app.UseHttpsRedirection();
-    app.UseStaticFiles();
-
-    app.UseRouting();
-
-    app.UseAuthentication();
-    app.UseAuthorization();
-
-    app.MapControllerRoute(
-        name: "default",
-        pattern: "{controller=Home}/{action=Index}/{id?}");
-
-    app.MapRazorPages();
-
-    using (var scope = app.Services.CreateScope())
-    {
-        var services = scope.ServiceProvider;
-        var context = services.GetRequiredService<ApplicationDbContext>();
-
-        await IdentitySeed.SeedRolesAndUsersAsync(services);
-        await AppDataSeed.SeedAppDataAsync(context);
-    }
-
-    app.Run();
-}
-catch (Exception ex)
+if (!app.Environment.IsDevelopment())
 {
-    Log.Fatal(ex, "Application failed to start");
+    app.UseExceptionHandler("/Home/Error");
+    app.UseHsts();
 }
-finally
-{
-    Log.CloseAndFlush();
-}
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+app.UseRouting();
+app.UseAuthentication();
+app.UseAuthorization();
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.MapRazorPages();
+
+app.Run();

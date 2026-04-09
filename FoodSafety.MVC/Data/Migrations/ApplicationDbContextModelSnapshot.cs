@@ -22,6 +22,293 @@ namespace FoodSafety.MVC.Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("FoodSafety.Domain.Entities.Assignment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CourseId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DueDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("MaxScore")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CourseId");
+
+                    b.ToTable("Assignments");
+                });
+
+            modelBuilder.Entity("FoodSafety.Domain.Entities.AssignmentResult", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("AssignmentId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Feedback")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Score")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("StudentProfileId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("StudentProfileId");
+
+                    b.HasIndex("AssignmentId", "StudentProfileId")
+                        .IsUnique();
+
+                    b.ToTable("AssignmentResults");
+                });
+
+            modelBuilder.Entity("FoodSafety.Domain.Entities.AttendanceRecord", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CourseEnrolmentId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("Present")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("WeekNumber")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CourseEnrolmentId");
+
+                    b.ToTable("AttendanceRecords");
+                });
+
+            modelBuilder.Entity("FoodSafety.Domain.Entities.Branch", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Branches");
+                });
+
+            modelBuilder.Entity("FoodSafety.Domain.Entities.Course", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("BranchId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BranchId");
+
+                    b.ToTable("Courses");
+                });
+
+            modelBuilder.Entity("FoodSafety.Domain.Entities.CourseEnrolment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CourseId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("EnrolDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("StudentProfileId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CourseId");
+
+                    b.HasIndex("StudentProfileId", "CourseId")
+                        .IsUnique();
+
+                    b.ToTable("CourseEnrolments");
+                });
+
+            modelBuilder.Entity("FoodSafety.Domain.Entities.Exam", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CourseId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("MaxScore")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<bool>("ResultsReleased")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CourseId");
+
+                    b.ToTable("Exams");
+                });
+
+            modelBuilder.Entity("FoodSafety.Domain.Entities.ExamResult", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("ExamId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Grade")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Score")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("StudentProfileId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("StudentProfileId");
+
+                    b.HasIndex("ExamId", "StudentProfileId")
+                        .IsUnique();
+
+                    b.ToTable("ExamResults");
+                });
+
+            modelBuilder.Entity("FoodSafety.Domain.Entities.FacultyCourseAssignment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CourseId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("FacultyProfileId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CourseId");
+
+                    b.HasIndex("FacultyProfileId", "CourseId")
+                        .IsUnique();
+
+                    b.ToTable("FacultyCourseAssignments");
+                });
+
+            modelBuilder.Entity("FoodSafety.Domain.Entities.FacultyProfile", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IdentityUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(120)
+                        .HasColumnType("nvarchar(120)");
+
+                    b.Property<string>("Phone")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IdentityUserId")
+                        .IsUnique();
+
+                    b.ToTable("FacultyProfiles");
+                });
+
             modelBuilder.Entity("FoodSafety.Domain.Entities.FollowUp", b =>
                 {
                     b.Property<int>("Id")
@@ -129,6 +416,53 @@ namespace FoodSafety.MVC.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Premises");
+                });
+
+            modelBuilder.Entity("FoodSafety.Domain.Entities.StudentProfile", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Address")
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<DateTime?>("DOB")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IdentityUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(120)
+                        .HasColumnType("nvarchar(120)");
+
+                    b.Property<string>("Phone")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StudentNumber")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IdentityUserId")
+                        .IsUnique();
+
+                    b.HasIndex("StudentNumber")
+                        .IsUnique();
+
+                    b.ToTable("StudentProfiles");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -333,6 +667,126 @@ namespace FoodSafety.MVC.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("FoodSafety.Domain.Entities.Assignment", b =>
+                {
+                    b.HasOne("FoodSafety.Domain.Entities.Course", "Course")
+                        .WithMany("Assignments")
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Course");
+                });
+
+            modelBuilder.Entity("FoodSafety.Domain.Entities.AssignmentResult", b =>
+                {
+                    b.HasOne("FoodSafety.Domain.Entities.Assignment", "Assignment")
+                        .WithMany("AssignmentResults")
+                        .HasForeignKey("AssignmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("FoodSafety.Domain.Entities.StudentProfile", "StudentProfile")
+                        .WithMany("AssignmentResults")
+                        .HasForeignKey("StudentProfileId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Assignment");
+
+                    b.Navigation("StudentProfile");
+                });
+
+            modelBuilder.Entity("FoodSafety.Domain.Entities.AttendanceRecord", b =>
+                {
+                    b.HasOne("FoodSafety.Domain.Entities.CourseEnrolment", "CourseEnrolment")
+                        .WithMany("AttendanceRecords")
+                        .HasForeignKey("CourseEnrolmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CourseEnrolment");
+                });
+
+            modelBuilder.Entity("FoodSafety.Domain.Entities.Course", b =>
+                {
+                    b.HasOne("FoodSafety.Domain.Entities.Branch", "Branch")
+                        .WithMany("Courses")
+                        .HasForeignKey("BranchId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Branch");
+                });
+
+            modelBuilder.Entity("FoodSafety.Domain.Entities.CourseEnrolment", b =>
+                {
+                    b.HasOne("FoodSafety.Domain.Entities.Course", "Course")
+                        .WithMany("CourseEnrolments")
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("FoodSafety.Domain.Entities.StudentProfile", "StudentProfile")
+                        .WithMany("CourseEnrolments")
+                        .HasForeignKey("StudentProfileId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Course");
+
+                    b.Navigation("StudentProfile");
+                });
+
+            modelBuilder.Entity("FoodSafety.Domain.Entities.Exam", b =>
+                {
+                    b.HasOne("FoodSafety.Domain.Entities.Course", "Course")
+                        .WithMany("Exams")
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Course");
+                });
+
+            modelBuilder.Entity("FoodSafety.Domain.Entities.ExamResult", b =>
+                {
+                    b.HasOne("FoodSafety.Domain.Entities.Exam", "Exam")
+                        .WithMany("ExamResults")
+                        .HasForeignKey("ExamId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("FoodSafety.Domain.Entities.StudentProfile", "StudentProfile")
+                        .WithMany("ExamResults")
+                        .HasForeignKey("StudentProfileId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Exam");
+
+                    b.Navigation("StudentProfile");
+                });
+
+            modelBuilder.Entity("FoodSafety.Domain.Entities.FacultyCourseAssignment", b =>
+                {
+                    b.HasOne("FoodSafety.Domain.Entities.Course", "Course")
+                        .WithMany("FacultyCourseAssignments")
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("FoodSafety.Domain.Entities.FacultyProfile", "FacultyProfile")
+                        .WithMany("FacultyCourseAssignments")
+                        .HasForeignKey("FacultyProfileId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Course");
+
+                    b.Navigation("FacultyProfile");
+                });
+
             modelBuilder.Entity("FoodSafety.Domain.Entities.FollowUp", b =>
                 {
                     b.HasOne("FoodSafety.Domain.Entities.Inspection", "Inspection")
@@ -406,6 +860,42 @@ namespace FoodSafety.MVC.Data.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("FoodSafety.Domain.Entities.Assignment", b =>
+                {
+                    b.Navigation("AssignmentResults");
+                });
+
+            modelBuilder.Entity("FoodSafety.Domain.Entities.Branch", b =>
+                {
+                    b.Navigation("Courses");
+                });
+
+            modelBuilder.Entity("FoodSafety.Domain.Entities.Course", b =>
+                {
+                    b.Navigation("Assignments");
+
+                    b.Navigation("CourseEnrolments");
+
+                    b.Navigation("Exams");
+
+                    b.Navigation("FacultyCourseAssignments");
+                });
+
+            modelBuilder.Entity("FoodSafety.Domain.Entities.CourseEnrolment", b =>
+                {
+                    b.Navigation("AttendanceRecords");
+                });
+
+            modelBuilder.Entity("FoodSafety.Domain.Entities.Exam", b =>
+                {
+                    b.Navigation("ExamResults");
+                });
+
+            modelBuilder.Entity("FoodSafety.Domain.Entities.FacultyProfile", b =>
+                {
+                    b.Navigation("FacultyCourseAssignments");
+                });
+
             modelBuilder.Entity("FoodSafety.Domain.Entities.Inspection", b =>
                 {
                     b.Navigation("FollowUps");
@@ -414,6 +904,15 @@ namespace FoodSafety.MVC.Data.Migrations
             modelBuilder.Entity("FoodSafety.Domain.Entities.Premises", b =>
                 {
                     b.Navigation("Inspections");
+                });
+
+            modelBuilder.Entity("FoodSafety.Domain.Entities.StudentProfile", b =>
+                {
+                    b.Navigation("AssignmentResults");
+
+                    b.Navigation("CourseEnrolments");
+
+                    b.Navigation("ExamResults");
                 });
 #pragma warning restore 612, 618
         }

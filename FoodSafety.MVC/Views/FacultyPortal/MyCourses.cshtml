@@ -1,0 +1,25 @@
+﻿@model IEnumerable<FoodSafety.Domain.Entities.FacultyCourseAssignment>
+
+@{
+    ViewData["Title"] = "My Courses";
+}
+
+<h1>My Courses</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Course</th>
+            <th>Branch</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Course?.Name</td>
+                <td>@item.Course?.Branch?.Name</td>
+            </tr>
+        }
+    </tbody>
+</table>
