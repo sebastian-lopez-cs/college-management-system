@@ -22,8 +22,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\FoodSafety.MVC\CollegeManagement.Web.csproj" />
-		<ProjectReference Include="..\FoodSafety.Domain\CollegeManagement.Domain.csproj" />
+		<ProjectReference Include="..\CollegeManagement.Web\CollegeManagement.Web.csproj" />
+		<ProjectReference Include="..\CollegeManagement.Domain\CollegeManagement.Domain.csproj" />
 	</ItemGroup>
 
 </Project>
