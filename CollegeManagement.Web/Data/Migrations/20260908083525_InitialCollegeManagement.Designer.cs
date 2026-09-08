@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CollegeManagement.Web.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260409124358_AddVgcCollegeCoreTables")]
-    partial class AddVgcCollegeCoreTables
+    [Migration("20260908083525_InitialCollegeManagement")]
+    partial class InitialCollegeManagement
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -40,7 +40,8 @@ namespace CollegeManagement.Web.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<decimal>("MaxScore")
-                        .HasColumnType("decimal(18,2)");
+                        .HasPrecision(5, 2)
+                        .HasColumnType("decimal(5,2)");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -69,7 +70,8 @@ namespace CollegeManagement.Web.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Score")
-                        .HasColumnType("decimal(18,2)");
+                        .HasPrecision(5, 2)
+                        .HasColumnType("decimal(5,2)");
 
                     b.Property<int>("StudentProfileId")
                         .HasColumnType("int");
@@ -209,7 +211,8 @@ namespace CollegeManagement.Web.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<decimal>("MaxScore")
-                        .HasColumnType("decimal(18,2)");
+                        .HasPrecision(5, 2)
+                        .HasColumnType("decimal(5,2)");
 
                     b.Property<bool>("ResultsReleased")
                         .HasColumnType("bit");
@@ -241,7 +244,8 @@ namespace CollegeManagement.Web.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Score")
-                        .HasColumnType("decimal(18,2)");
+                        .HasPrecision(5, 2)
+                        .HasColumnType("decimal(5,2)");
 
                     b.Property<int>("StudentProfileId")
                         .HasColumnType("int");
@@ -310,115 +314,6 @@ namespace CollegeManagement.Web.Data.Migrations
                         .IsUnique();
 
                     b.ToTable("FacultyProfiles");
-                });
-
-            modelBuilder.Entity("CollegeManagement.Domain.Entities.FollowUp", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("ActionRequired")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.Property<DateTime?>("CompletedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("DueDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("InspectionId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("InspectionId");
-
-                    b.ToTable("FollowUps");
-                });
-
-            modelBuilder.Entity("CollegeManagement.Domain.Entities.Inspection", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("HygieneScore")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("InspectionDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("InspectorName")
-                        .IsRequired()
-                        .HasMaxLength(120)
-                        .HasColumnType("nvarchar(120)");
-
-                    b.Property<string>("Notes")
-                        .HasMaxLength(1000)
-                        .HasColumnType("nvarchar(1000)");
-
-                    b.Property<int>("Outcome")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PremisesId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PremisesId");
-
-                    b.ToTable("Inspections");
-                });
-
-            modelBuilder.Entity("CollegeManagement.Domain.Entities.Premises", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("AddressLine1")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.Property<string>("BusinessType")
-                        .IsRequired()
-                        .HasMaxLength(80)
-                        .HasColumnType("nvarchar(80)");
-
-                    b.Property<string>("Eircode")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(120)
-                        .HasColumnType("nvarchar(120)");
-
-                    b.Property<int>("RiskRating")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Town")
-                        .IsRequired()
-                        .HasMaxLength(80)
-                        .HasColumnType("nvarchar(80)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Premises");
                 });
 
             modelBuilder.Entity("CollegeManagement.Domain.Entities.StudentProfile", b =>
@@ -790,28 +685,6 @@ namespace CollegeManagement.Web.Data.Migrations
                     b.Navigation("FacultyProfile");
                 });
 
-            modelBuilder.Entity("CollegeManagement.Domain.Entities.FollowUp", b =>
-                {
-                    b.HasOne("CollegeManagement.Domain.Entities.Inspection", "Inspection")
-                        .WithMany("FollowUps")
-                        .HasForeignKey("InspectionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Inspection");
-                });
-
-            modelBuilder.Entity("CollegeManagement.Domain.Entities.Inspection", b =>
-                {
-                    b.HasOne("CollegeManagement.Domain.Entities.Premises", "Premises")
-                        .WithMany("Inspections")
-                        .HasForeignKey("PremisesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Premises");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -897,16 +770,6 @@ namespace CollegeManagement.Web.Data.Migrations
             modelBuilder.Entity("CollegeManagement.Domain.Entities.FacultyProfile", b =>
                 {
                     b.Navigation("FacultyCourseAssignments");
-                });
-
-            modelBuilder.Entity("CollegeManagement.Domain.Entities.Inspection", b =>
-                {
-                    b.Navigation("FollowUps");
-                });
-
-            modelBuilder.Entity("CollegeManagement.Domain.Entities.Premises", b =>
-                {
-                    b.Navigation("Inspections");
                 });
 
             modelBuilder.Entity("CollegeManagement.Domain.Entities.StudentProfile", b =>
