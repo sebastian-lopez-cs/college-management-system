@@ -11,12 +11,9 @@ public class ApplicationDbContext : IdentityDbContext
     {
     }
 
-    // OLD PROJECT TABLES - KEEP THEM
-    public DbSet<Premises> Premises { get; set; } = default!;
-    public DbSet<Inspection> Inspections { get; set; } = default!;
-    public DbSet<FollowUp> FollowUps { get; set; } = default!;
 
-    // NEW ASSIGNMENT TABLES
+
+    // College management tables
     public DbSet<Branch> Branches { get; set; } = default!;
     public DbSet<Course> Courses { get; set; } = default!;
     public DbSet<StudentProfile> StudentProfiles { get; set; } = default!;
