@@ -1,11 +1,11 @@
-﻿using FoodSafety.Domain.Entities;
-using FoodSafety.MVC.Data;
+﻿using CollegeManagement.Domain.Entities;
+using CollegeManagement.Web.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 
-namespace FoodSafety.MVC.Controllers
+namespace CollegeManagement.Web.Controllers
 {
     [Authorize]
     public class PremisesController : Controller

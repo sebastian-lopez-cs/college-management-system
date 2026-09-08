@@ -1,8 +1,8 @@
-﻿using FoodSafety.Domain.Entities;
+﻿using CollegeManagement.Domain.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace FoodSafety.MVC.Data;
+namespace CollegeManagement.Web.Data;
 
 public class ApplicationDbContext : IdentityDbContext
 {

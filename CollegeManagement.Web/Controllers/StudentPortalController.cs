@@ -1,10 +1,10 @@
-﻿using FoodSafety.MVC.Data;
+﻿using CollegeManagement.Web.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace FoodSafety.MVC.Controllers;
+namespace CollegeManagement.Web.Controllers;
 
 [Authorize(Roles = "Student")]
 public class StudentPortalController : Controller

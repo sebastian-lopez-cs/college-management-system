@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace FoodSafety.MVC.Data.Migrations
+namespace CollegeManagement.Web.Data.Migrations
 {
     public partial class CreateIdentitySchema : Migration
     {

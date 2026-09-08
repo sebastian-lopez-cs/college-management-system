@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace FoodSafety.MVC.Controllers;
+namespace CollegeManagement.Web.Controllers;
 
 [Authorize(Roles = "Administrator")]
 public class DashboardController : Controller

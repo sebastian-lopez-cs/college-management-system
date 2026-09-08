@@ -1,4 +1,4 @@
-namespace FoodSafety.MVC.Models
+namespace CollegeManagement.Web.Models
 {
     public class ErrorViewModel
     {

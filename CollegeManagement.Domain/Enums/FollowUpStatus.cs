@@ -1,4 +1,4 @@
-﻿namespace FoodSafety.Domain.Enums
+﻿namespace CollegeManagement.Domain.Enums
 {
     public enum FollowUpStatus
     {

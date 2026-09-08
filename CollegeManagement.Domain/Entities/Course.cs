@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace FoodSafety.Domain.Entities;
+namespace CollegeManagement.Domain.Entities;
 
 public class Course
 {

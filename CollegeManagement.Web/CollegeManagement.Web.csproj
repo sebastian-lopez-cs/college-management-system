@@ -4,7 +4,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>aspnet-FoodSafety.MVC-64465f42-7250-49fe-8053-3d6d649c9932</UserSecretsId>
+    <UserSecretsId>aspnet-CollegeManagement.Web-64465f42-7250-49fe-8053-3d6d649c9932</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>

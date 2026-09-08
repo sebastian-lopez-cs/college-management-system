@@ -1,6 +1,6 @@
-using FoodSafety.MVC.Data;
-using FoodSafety.MVC.Seed;
-using FoodSafety.MVC.Services;
+using CollegeManagement.Web.Data;
+using CollegeManagement.Web.Seed;
+using CollegeManagement.Web.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 

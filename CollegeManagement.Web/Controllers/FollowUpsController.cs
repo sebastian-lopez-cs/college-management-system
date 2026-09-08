@@ -1,13 +1,13 @@
-﻿using FoodSafety.Domain.Entities;
-using FoodSafety.Domain.Enums;
-using FoodSafety.MVC.Data;
+﻿using CollegeManagement.Domain.Entities;
+using CollegeManagement.Domain.Enums;
+using CollegeManagement.Web.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 
-namespace FoodSafety.MVC.Controllers
+namespace CollegeManagement.Web.Controllers
 {
     [Authorize]
     public class FollowUpsController : Controller

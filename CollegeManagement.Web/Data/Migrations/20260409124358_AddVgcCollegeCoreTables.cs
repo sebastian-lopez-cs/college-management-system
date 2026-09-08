@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace FoodSafety.MVC.Data.Migrations
+namespace CollegeManagement.Web.Data.Migrations
 {
     /// <inheritdoc />
     public partial class AddVgcCollegeCoreTables : Migration

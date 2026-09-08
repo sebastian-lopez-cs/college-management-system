@@ -1,4 +1,4 @@
-﻿namespace FoodSafety.MVC.Seed;
+﻿namespace CollegeManagement.Web.Seed;
 
 public static class AppRoles
 {

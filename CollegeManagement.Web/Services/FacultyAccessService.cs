@@ -1,7 +1,7 @@
-﻿using FoodSafety.MVC.Data;
+﻿using CollegeManagement.Web.Data;
 using Microsoft.EntityFrameworkCore;
 
-namespace FoodSafety.MVC.Services;
+namespace CollegeManagement.Web.Services;
 
 public class FacultyAccessService
 {

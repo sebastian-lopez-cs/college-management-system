@@ -1,4 +1,4 @@
-﻿@model IEnumerable<FoodSafety.Domain.Entities.FollowUp>
+﻿@model IEnumerable<CollegeManagement.Domain.Entities.FollowUp>
 
 @{
     ViewData["Title"] = "Follow Ups";
@@ -35,7 +35,7 @@
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                     <a asp-action="Details" asp-route-id="@item.Id">Details</a>
-                    @if (item.Status != FoodSafety.Domain.Enums.FollowUpStatus.Closed)
+                    @if (item.Status != CollegeManagement.Domain.Enums.FollowUpStatus.Closed)
                     {
                         <text> | </text>
                 

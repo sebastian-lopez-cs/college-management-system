@@ -1,6 +1,6 @@
 ﻿using Xunit;
 
-namespace FoodSafety.Tests;
+namespace CollegeManagement.Tests;
 
 public class AppDataSeedTests
 {

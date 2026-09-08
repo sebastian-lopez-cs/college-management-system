@@ -1,4 +1,4 @@
-﻿namespace FoodSafety.Domain.Entities;
+﻿namespace CollegeManagement.Domain.Entities;
 
 public class CourseEnrolment
 {

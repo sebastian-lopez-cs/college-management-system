@@ -1,9 +1,9 @@
-﻿using FoodSafety.Domain.Entities;
-using FoodSafety.Domain.Enums;
-using FoodSafety.MVC.Data;
+﻿using CollegeManagement.Domain.Entities;
+using CollegeManagement.Domain.Enums;
+using CollegeManagement.Web.Data;
 using Microsoft.EntityFrameworkCore;
 
-namespace FoodSafety.MVC.Seed
+namespace CollegeManagement.Web.Seed
 {
     public static class AppDataSeed
     {

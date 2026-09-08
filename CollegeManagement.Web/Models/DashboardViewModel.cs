@@ -1,6 +1,6 @@
-﻿using FoodSafety.Domain.Entities;
+﻿using CollegeManagement.Domain.Entities;
 
-namespace FoodSafety.MVC.Models
+namespace CollegeManagement.Web.Models
 {
     public class DashboardViewModel
     {

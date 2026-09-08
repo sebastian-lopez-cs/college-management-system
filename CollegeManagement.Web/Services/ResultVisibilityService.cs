@@ -1,4 +1,4 @@
-﻿namespace FoodSafety.MVC.Services;
+﻿namespace CollegeManagement.Web.Services;
 
 public class ResultVisibilityService
 {

@@ -92,7 +92,7 @@ A **GitHub Actions** workflow is included to support automated build and test ex
 5. Run:
 
 ```powershell
-Update-Database -Project FoodSafety.MVC -StartupProject FoodSafety.MVC
+Update-Database -Project CollegeManagement.Web -StartupProject CollegeManagement.Web
 ```
 
 6. Build and run the application.

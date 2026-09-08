@@ -6,10 +6,10 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using FoodSafety.Domain.Entities;
-using FoodSafety.MVC.Data;
+using CollegeManagement.Domain.Entities;
+using CollegeManagement.Web.Data;
 
-namespace FoodSafety.MVC.Controllers
+namespace CollegeManagement.Web.Controllers
 {
     public class AttendanceRecordsController : Controller
     {

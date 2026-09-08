@@ -1,9 +1,9 @@
 using System.Diagnostics;
-using FoodSafety.MVC.Models;
+using CollegeManagement.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using Serilog;
 
-namespace FoodSafety.MVC.Controllers
+namespace CollegeManagement.Web.Controllers
 {
     public class HomeController : Controller
     {

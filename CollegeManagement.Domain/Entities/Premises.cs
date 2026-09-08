@@ -1,7 +1,7 @@
-﻿using FoodSafety.Domain.Enums;
+﻿using CollegeManagement.Domain.Enums;
 using System.ComponentModel.DataAnnotations;
 
-namespace FoodSafety.Domain.Entities
+namespace CollegeManagement.Domain.Entities
 {
     public class Premises
     {

@@ -1,4 +1,4 @@
-﻿@model FoodSafety.Domain.Entities.Premises
+﻿@model CollegeManagement.Domain.Entities.Premises
 
 @{
     ViewData["Title"] = "Edit Premises";
@@ -44,7 +44,7 @@
 
             <div class="mb-3">
                 <label asp-for="RiskRating" class="form-label"></label>
-                <select asp-for="RiskRating" class="form-select" asp-items="Html.GetEnumSelectList<FoodSafety.Domain.Enums.RiskRating>()"></select>
+                <select asp-for="RiskRating" class="form-select" asp-items="Html.GetEnumSelectList<CollegeManagement.Domain.Enums.RiskRating>()"></select>
                 <span asp-validation-for="RiskRating" class="text-danger"></span>
             </div>
 

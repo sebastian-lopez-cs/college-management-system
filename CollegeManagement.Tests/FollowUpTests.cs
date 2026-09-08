@@ -1,8 +1,8 @@
-﻿using FoodSafety.Domain.Entities;
-using FoodSafety.Domain.Enums;
+﻿using CollegeManagement.Domain.Entities;
+using CollegeManagement.Domain.Enums;
 using Xunit;
 
-namespace FoodSafety.Tests
+namespace CollegeManagement.Tests
 {
     public class FollowUpTests
     {

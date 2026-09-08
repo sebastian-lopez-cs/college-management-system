@@ -1,10 +1,10 @@
-﻿using FoodSafety.Domain.Entities;
-using FoodSafety.MVC.Data;
-using FoodSafety.MVC.Services;
+﻿using CollegeManagement.Domain.Entities;
+using CollegeManagement.Web.Data;
+using CollegeManagement.Web.Services;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
 
-namespace FoodSafety.Tests.Services;
+namespace CollegeManagement.Tests.Services;
 
 public class EnrolmentServiceTests
 {

@@ -1,7 +1,7 @@
-﻿using FoodSafety.MVC.Services;
+﻿using CollegeManagement.Web.Services;
 using Xunit;
 
-namespace FoodSafety.Tests.Services;
+namespace CollegeManagement.Tests.Services;
 
 public class ResultVisibilityServiceTests
 {
