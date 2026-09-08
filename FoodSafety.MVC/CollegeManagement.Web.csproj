@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\FoodSafety.Domain\FoodSafety.Domain.csproj" />
+    <ProjectReference Include="..\FoodSafety.Domain\CollegeManagement.Domain.csproj" />
   </ItemGroup>
 
 </Project>
