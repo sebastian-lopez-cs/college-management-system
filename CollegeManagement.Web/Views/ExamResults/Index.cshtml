@@ -1,53 +1,85 @@
 ﻿@model IEnumerable<CollegeManagement.Domain.Entities.ExamResult>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Exam Results";
 }
 
-<h1>Index</h1>
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h1 class="mb-1">Exam Results</h1>
+        <p class="text-light mb-0">
+            Review student exam scores and grades.
+        </p>
+    </div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Score)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Grade)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Exam)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.StudentProfile)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Score)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Grade)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Exam.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StudentProfile.Email)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+    <a asp-action="Create" class="btn btn-primary">
+        Add Result
+    </a>
+</div>
+
+<div class="table-responsive">
+    <table class="table align-middle">
+        <thead>
+            <tr>
+                <th>Student</th>
+                <th>Exam</th>
+                <th>Score</th>
+                <th>Grade</th>
+                <th class="text-end">Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <strong>
+                            @(item.StudentProfile?.Name ?? "Unknown student")
+                        </strong>
+
+                        <div class="small text-muted">
+                            @(item.StudentProfile?.Email ?? "")
+                        </div>
+                    </td>
+
+                    <td>
+                        @(item.Exam?.Title ?? "Unknown exam")
+                    </td>
+
+                    <td>
+                        <strong>@item.Score.ToString("0.##")</strong>
+                        /
+                        @(item.Exam?.MaxScore.ToString("0.##") ?? "—")
+                    </td>
+
+                    <td>
+                        <span class="badge bg-secondary">
+                            @(item.Grade ?? "Not graded")
+                        </span>
+                    </td>
+
+                    <td class="text-end text-nowrap">
+                        <a asp-action="Details"
+                           asp-route-id="@item.Id"
+                           class="btn btn-sm btn-outline-success">
+                            View
+                        </a>
+
+                        <a asp-action="Edit"
+                           asp-route-id="@item.Id"
+                           class="btn btn-sm btn-outline-primary">
+                            Edit
+                        </a>
+
+                        <a asp-action="Delete"
+                           asp-route-id="@item.Id"
+                           class="btn btn-sm btn-outline-danger">
+                            Delete
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

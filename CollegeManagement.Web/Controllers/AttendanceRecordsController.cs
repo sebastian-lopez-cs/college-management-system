@@ -23,8 +23,14 @@ namespace CollegeManagement.Web.Controllers
         // GET: AttendanceRecords
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.AttendanceRecords.Include(a => a.CourseEnrolment);
-            return View(await applicationDbContext.ToListAsync());
+            var attendanceRecords = _context.AttendanceRecords
+                .Include(a => a.CourseEnrolment)
+                    .ThenInclude(ce => ce!.StudentProfile)
+                .Include(a => a.CourseEnrolment)
+                    .ThenInclude(ce => ce!.Course)
+                .OrderBy(a => a.Date);
+
+            return View(await attendanceRecords.ToListAsync());
         }
 
         // GET: AttendanceRecords/Details/5

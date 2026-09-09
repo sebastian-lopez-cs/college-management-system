@@ -46,4 +46,20 @@ public class ResultVisibilityServiceTests
 
         Assert.False(result);
     }
+
+    [Fact]
+    public void IsValidScore_ReturnsTrue_WhenScoreIsZero()
+    {
+        var result = _service.IsValidScore(0, 100);
+
+        Assert.True(result);
+    }
+
+    [Fact]
+    public void IsValidScore_ReturnsTrue_WhenScoreEqualsMaximum()
+    {
+        var result = _service.IsValidScore(100, 100);
+
+        Assert.True(result);
+    }
 }

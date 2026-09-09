@@ -2,28 +2,34 @@ name: .NET CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - main
+
   pull_request:
-    branches: [ "main" ]
+    branches:
+      - main
+
+  workflow_dispatch:
 
 jobs:
   build-and-test:
+    name: Build and Test
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: 8.0.x
+      - name: Setup .NET 8
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
 
-    - name: Restore dependencies
-      run: dotnet restore oop-s2-2-mvc-77928.sln
+      - name: Restore dependencies
+        run: dotnet restore CollegeManagementSystem.sln
 
-    - name: Build solution
-      run: dotnet build oop-s2-2-mvc-77928.sln --no-restore --configuration Release
+      - name: Build solution
+        run: dotnet build CollegeManagementSystem.sln --configuration Release --no-restore
 
-    - name: Run tests
-      run: dotnet test oop-s2-2-mvc-77928.sln --no-build --configuration Release
+      - name: Run automated tests
+        run: dotnet test CollegeManagementSystem.sln --configuration Release --no-build

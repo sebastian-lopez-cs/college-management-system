@@ -34,7 +34,7 @@ public static class AppDbSeeder
         }
 
         // Admin user
-        var adminEmail = "admin@vgc.com";
+        var adminEmail = "admin@college.test";
         var adminUser = await userManager.FindByEmailAsync(adminEmail);
         if (adminUser == null)
         {
@@ -57,7 +57,7 @@ public static class AppDbSeeder
         }
 
         // Faculty user
-        var facultyEmail = "faculty@vgc.com";
+        var facultyEmail = "faculty@college.test";
         var facultyUser = await userManager.FindByEmailAsync(facultyEmail);
         if (facultyUser == null)
         {
@@ -91,7 +91,7 @@ public static class AppDbSeeder
         }
 
         // Student 1
-        var student1Email = "student1@vgc.com";
+        var student1Email = "student1@college.test";
         var student1User = await userManager.FindByEmailAsync(student1Email);
         if (student1User == null)
         {
@@ -128,7 +128,7 @@ public static class AppDbSeeder
         }
 
         // Student 2
-        var student2Email = "student2@vgc.com";
+        var student2Email = "student2@college.test";
         var student2User = await userManager.FindByEmailAsync(student2Email);
         if (student2User == null)
         {
