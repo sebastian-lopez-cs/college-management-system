@@ -1,0 +1,89 @@
+﻿@model IEnumerable<CollegeManagement.Domain.Entities.AttendanceRecord>
+
+@{
+    ViewData["Title"] = "Attendance";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h1 class="mb-1">Attendance</h1>
+        <p class="text-light mb-0">
+            Track student attendance across enrolled courses.
+        </p>
+    </div>
+
+    <a asp-action="Create" class="btn btn-primary">
+        Record Attendance
+    </a>
+</div>
+
+<div class="table-responsive">
+    <table class="table align-middle">
+        <thead>
+            <tr>
+                <th>Student</th>
+                <th>Course</th>
+                <th>Week</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th class="text-end">Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <strong>
+                            @(item.CourseEnrolment?.StudentProfile?.Name ?? "Unknown student")
+                        </strong>
+                    </td>
+
+                    <td>
+                        @(item.CourseEnrolment?.Course?.Name ?? "Unknown course")
+                    </td>
+
+                    <td>
+                        Week @item.WeekNumber
+                    </td>
+
+                    <td>
+                        @item.Date.ToString("dd MMM yyyy")
+                    </td>
+
+                    <td>
+                        @if (item.Present)
+                        {
+                            <span class="badge bg-success">Present</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-danger">Absent</span>
+                        }
+                    </td>
+
+                    <td class="text-end text-nowrap">
+                        <a asp-action="Details"
+                           asp-route-id="@item.Id"
+                           class="btn btn-sm btn-outline-success">
+                            View
+                        </a>
+
+                        <a asp-action="Edit"
+                           asp-route-id="@item.Id"
+                           class="btn btn-sm btn-outline-primary">
+                            Edit
+                        </a>
+
+                        <a asp-action="Delete"
+                           asp-route-id="@item.Id"
+                           class="btn btn-sm btn-outline-danger">
+                            Delete
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

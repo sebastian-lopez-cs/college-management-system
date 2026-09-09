@@ -1,0 +1,85 @@
+﻿@model IEnumerable<CollegeManagement.Domain.Entities.StudentProfile>
+
+@{
+    ViewData["Title"] = "Students";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h1 class="mb-1">Students</h1>
+        <p class="text-light mb-0">
+            Manage registered student profiles and academic records.
+        </p>
+    </div>
+
+    <a asp-action="Create" class="btn btn-primary">
+        Add Student
+    </a>
+</div>
+
+<div class="table-responsive">
+    <table class="table align-middle">
+        <thead>
+            <tr>
+                <th>Student Number</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Address</th>
+                <th>Date of Birth</th>
+                <th class="text-end">Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <strong>@item.StudentNumber</strong>
+                    </td>
+
+                    <td>
+                        @item.Name
+                    </td>
+
+                    <td>
+                        @item.Email
+                    </td>
+
+                    <td>
+                        @item.Phone
+                    </td>
+
+                    <td>
+                        @item.Address
+                    </td>
+
+                    <td>
+                        @(item.DOB.HasValue? item.DOB.Value.ToString("dd MMM yyyy") : "—")
+                    </td>
+
+                    <td class="text-end text-nowrap">
+                        <a asp-action="Details"
+                           asp-route-id="@item.Id"
+                           class="btn btn-sm btn-outline-success">
+                            View
+                        </a>
+
+                        <a asp-action="Edit"
+                           asp-route-id="@item.Id"
+                           class="btn btn-sm btn-outline-primary">
+                            Edit
+                        </a>
+
+                        <a asp-action="Delete"
+                           asp-route-id="@item.Id"
+                           class="btn btn-sm btn-outline-danger">
+                            Delete
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

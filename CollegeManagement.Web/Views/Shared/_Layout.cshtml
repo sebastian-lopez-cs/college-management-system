@@ -1,0 +1,325 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>@ViewData["Title"] - College Management System</title>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/CollegeManagement.Web.styles.css" asp-append-version="true" />
+</head>
+
+<body class="eco-body">
+
+    <header>
+        <nav class="navbar navbar-expand-lg eco-navbar">
+            <div class="container">
+
+                <a class="navbar-brand eco-brand"
+                   asp-area=""
+                   asp-controller="Home"
+                   asp-action="Index">
+                    College Management System
+                </a>
+
+                <button class="navbar-toggler eco-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#mainNav"
+                        aria-controls="mainNav"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation">
+
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="mainNav">
+
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                        @if (User.Identity != null &&
+                                                User.Identity.IsAuthenticated &&
+                                                User.IsInRole("Administrator"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link eco-link"
+                                   asp-controller="Dashboard"
+                                   asp-action="Index">
+                                    Dashboard
+                                </a>
+                            </li>
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle eco-link"
+                                   href="#"
+                                   id="academicDropdown"
+                                   role="button"
+                                   data-bs-toggle="dropdown"
+                                   aria-expanded="false">
+                                    Academic
+                                </a>
+
+                                <ul class="dropdown-menu eco-dropdown-menu"
+                                    aria-labelledby="academicDropdown">
+
+                                    <li>
+                                        <a class="dropdown-item"
+                                           asp-controller="Branches"
+                                           asp-action="Index">
+                                            Branches
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a class="dropdown-item"
+                                           asp-controller="Courses"
+                                           asp-action="Index">
+                                            Courses
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a class="dropdown-item"
+                                           asp-controller="StudentProfiles"
+                                           asp-action="Index">
+                                            Students
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a class="dropdown-item"
+                                           asp-controller="FacultyProfiles"
+                                           asp-action="Index">
+                                            Faculty
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a class="dropdown-item"
+                                           asp-controller="CourseEnrolments"
+                                           asp-action="Index">
+                                            Enrolments
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </li>
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle eco-link"
+                                   href="#"
+                                   id="assessmentDropdown"
+                                   role="button"
+                                   data-bs-toggle="dropdown"
+                                   aria-expanded="false">
+                                    Assessment
+                                </a>
+
+                                <ul class="dropdown-menu eco-dropdown-menu"
+                                    aria-labelledby="assessmentDropdown">
+
+                                    <li>
+                                        <a class="dropdown-item"
+                                           asp-controller="AttendanceRecords"
+                                           asp-action="Index">
+                                            Attendance
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a class="dropdown-item"
+                                           asp-controller="Assignments"
+                                           asp-action="Index">
+                                            Assignments
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a class="dropdown-item"
+                                           asp-controller="AssignmentResults"
+                                           asp-action="Index">
+                                            Assignment Results
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a class="dropdown-item"
+                                           asp-controller="Exams"
+                                           asp-action="Index">
+                                            Exams
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a class="dropdown-item"
+                                           asp-controller="ExamResults"
+                                           asp-action="Index">
+                                            Exam Results
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </li>
+                        }
+
+                        @if (User.Identity != null &&
+                                                User.Identity.IsAuthenticated &&
+                                                User.IsInRole("Faculty"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link eco-link"
+                                   asp-controller="FacultyPortal"
+                                   asp-action="MyCourses">
+                                    My Courses
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link eco-link"
+                                   asp-controller="FacultyPortal"
+                                   asp-action="MyStudents">
+                                    My Students
+                                </a>
+                            </li>
+
+                            <li class="nav-item dropdown">
+
+                                <a class="nav-link dropdown-toggle eco-link"
+                                   href="#"
+                                   id="teachingDropdown"
+                                   role="button"
+                                   data-bs-toggle="dropdown"
+                                   aria-expanded="false">
+                                    Teaching
+                                </a>
+
+                                <ul class="dropdown-menu eco-dropdown-menu"
+                                    aria-labelledby="teachingDropdown">
+
+                                    <li>
+                                        <a class="dropdown-item"
+                                           asp-controller="AttendanceRecords"
+                                           asp-action="Index">
+                                            Attendance
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a class="dropdown-item"
+                                           asp-controller="Assignments"
+                                           asp-action="Index">
+                                            Assignments
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a class="dropdown-item"
+                                           asp-controller="AssignmentResults"
+                                           asp-action="Index">
+                                            Assignment Results
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a class="dropdown-item"
+                                           asp-controller="Exams"
+                                           asp-action="Index">
+                                            Exams
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a class="dropdown-item"
+                                           asp-controller="ExamResults"
+                                           asp-action="Index">
+                                            Exam Results
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </li>
+                        }
+
+                        @if (User.Identity != null &&
+                                                User.Identity.IsAuthenticated &&
+                                                User.IsInRole("Student"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link eco-link"
+                                   asp-controller="StudentPortal"
+                                   asp-action="MyProfile">
+                                    My Profile
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link eco-link"
+                                   asp-controller="StudentPortal"
+                                   asp-action="MyEnrolments">
+                                    My Enrolments
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link eco-link"
+                                   asp-controller="StudentPortal"
+                                   asp-action="MyExams">
+                                    My Exams
+                                </a>
+                            </li>
+                        }
+
+                        @if (User.Identity == null ||
+                                                !User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link eco-link"
+                                   asp-controller="Home"
+                                   asp-action="Index">
+                                    Home
+                                </a>
+                            </li>
+                        }
+
+                    </ul>
+
+                    <div class="eco-login-links">
+                        <partial name="_LoginPartial" />
+                    </div>
+
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="eco-page-wrap">
+        <div class="container">
+
+            <main role="main"
+                  class="eco-main-content">
+
+                @RenderBody()
+
+            </main>
+
+        </div>
+    </div>
+
+    <footer class="eco-footer">
+
+        <div class="container">
+            &copy; 2026 - College Management System
+        </div>
+
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+
+</body>
+</html>
